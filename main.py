@@ -3,13 +3,7 @@ import streamlit as st
 
 if __name__ == '__main__':
 
-    files = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-
-    data = pd.read_csv('/Users/danielkoppel/Desktop/week_4/week4_1.csv')
-
-    for f in files:
-        d = pd.read_csv(f'/Users/danielkoppel/Desktop/week_4/week4_{f}.csv')
-        data = pd.concat([data, d])
+    data = pd.read_csv('https://bbmtop1000.s3.us-east-2.amazonaws.com/week4_master.csv')
 
     top_teams = data.sort_values(by=['roster_points', 'username'], ascending = False).head(18000)
     ownership = pd.DataFrame(top_teams['player_name'].value_counts()).reset_index()
