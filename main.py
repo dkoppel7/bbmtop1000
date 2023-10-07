@@ -13,8 +13,9 @@ if __name__ == '__main__':
         top_teams = data.sort_values(by=['roster_points', 'username'], ascending=False).head(18000)
         ownership = pd.DataFrame(top_teams['player_name'].value_counts()).reset_index()
         ownership = ownership.rename(columns={'index': 'player_name', 'player_name': 'count'})
-        return ownership
-    ownership = get_ownership()
+        return top_teams, ownership
+    
+    top_teams, ownership = get_ownership()
     st.write('Player Ownership in Top 1000 Teams')
     ownership
 
